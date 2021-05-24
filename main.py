@@ -28,6 +28,8 @@ MODEL_ROOT = config.MODEL_ROOT
 Root_PATH =  config.Root_PATH
 LABEL_IDS_PATH = config.LABEL_IDS_PATH
 TRAIN_METADATA_PATH = config.TRAIN_METADATA_PATH
+
+ic(DEVICE)
 # ------------ Config ------------
 
 
