@@ -288,7 +288,7 @@ def one_fold(model_name,df ,audio_image_store , fold, train_set, val_set, model_
 
   if LOAD_CHECHPOINT:
     checkpoint = torch.load(PATH_CHECKPOINT)
-    net.load_state_dict(checkpoint['model_state_dict'])
+    net.load_state_dict(checkpoint)
 
   criterion = nn.BCEWithLogitsLoss()
 
