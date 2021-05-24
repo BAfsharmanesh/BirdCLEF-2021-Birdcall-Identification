@@ -14,8 +14,7 @@ import timm
 from  torch.utils.data import DataLoader
 
 from sklearn.metrics import label_ranking_average_precision_score
-from tqdm import tqdm
-from icecream import ic
+from tqdm.auto import tqdm
 
 from data_prep import BirdClefDataset
 from config import config

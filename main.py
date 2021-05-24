@@ -5,7 +5,6 @@ from pathlib import Path
 import librosa.display as lbd
 import matplotlib.pyplot as plt
 import numpy as np
-import torch
 
 from data_prep import get_df, BirdClefDataset
 import train_model
