@@ -13,6 +13,7 @@ def get_df(mel_paths, train_label_paths):
 
     for file_path in mel_paths:
         temp = pd.read_csv(str(file_path), index_col=0)
+        ic(temp)
         temp["impath"] = temp.apply(
             lambda row: file_path.parent / "audio_images/{}/{}.npy".format(row.primary_label, row.filename), axis=1)
         df = temp if df is None else df.append(temp)
