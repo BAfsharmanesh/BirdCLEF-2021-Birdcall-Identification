@@ -19,6 +19,8 @@ from tqdm.auto import tqdm
 from data_prep import BirdClefDataset
 from config import config
 from Seed_everything import seed_everything
+
+import neptune
 # -------------- import libraries --------------
 
 
@@ -34,6 +36,7 @@ VAL_BATCH_SIZE = config.VAL_BATCH_SIZE
 VAL_NUM_WORKERS = config.VAL_NUM_WORKERS
 MODEL_ROOT = config.MODEL_ROOT
 DEVICE = config.DEVICE
+NEPTUNE = config.neptune
 # ------------ Config ------------
 seed_everything()
 
@@ -167,6 +170,14 @@ def one_epoch(net, criterion, optimizer, scheduler, train_laoder, val_laoder, de
 
         icount += 1
 
+        if NEPTUNE:
+            neptune.log_metric('Train loss', l / icount)
+            neptune.log_metric('Train lrap', lrap / icount)
+            neptune.log_metric('Train prec', prec / icount)
+            neptune.log_metric('Train rec', rec / icount)
+            neptune.log_metric('Train f1', f1 / icount)
+
+
         if hasattr(epoch_bar, "set_postfix") and not icount % 10:
             epoch_bar.set_postfix(
                 loss="{:.6f}".format(l / icount),
@@ -185,6 +196,13 @@ def one_epoch(net, criterion, optimizer, scheduler, train_laoder, val_laoder, de
     prec /= icount
 
     l_val, lrap_val, f1_val, rec_val, prec_val = evaluate(net, criterion, val_laoder, device=device)
+
+    if NEPTUNE:
+        neptune.log_metric('Val loss', l_val)
+        neptune.log_metric('Val lrap', lrap_val)
+        neptune.log_metric('Val prec', f1_val)
+        neptune.log_metric('Val rec', rec_val)
+        neptune.log_metric('Val f1', prec_val)
 
     return (l, l_val), (lrap, lrap_val), (f1, f1_val), (rec, rec_val), (prec, prec_val)
 # ---------------- one_epoch ----------------

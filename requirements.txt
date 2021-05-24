@@ -10,3 +10,4 @@ resnest~=0.0.6b20210522
 timm~=0.4.9
 scikit-learn~=0.24.1
 efficientnet_pytorch
+neptune-client

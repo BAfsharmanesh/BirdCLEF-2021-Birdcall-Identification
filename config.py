@@ -25,4 +25,6 @@ class config():
     Root_PATH = "../input"
     TRAIN_METADATA_PATH = "kkiller-birdclef-mels-computer-d7-part?/rich_train_metadata.csv"
     LABEL_IDS_PATH = "kkiller-birdclef-mels-computer-d7-part?/LABEL_IDS.json"
+
+    neptune = True
     # ---- Config ------------
