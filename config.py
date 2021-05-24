@@ -17,11 +17,11 @@ class config():
 
     MODEL_ROOT = Path(".")
 
-    Root_PATH = "../datasets/Kkiller"
-    LABEL_IDS_PATH = "Kkiller BirdCLEF Mels Computer D7 Part?/LABEL_IDS.json"
-    TRAIN_METADATA_PATH = "Kkiller BirdCLEF Mels Computer D7 Part?/rich_train_metadata.csv"
+    # Root_PATH = "../datasets/Kkiller"
+    # LABEL_IDS_PATH = "Kkiller BirdCLEF Mels Computer D7 Part?/LABEL_IDS.json"
+    # TRAIN_METADATA_PATH = "Kkiller BirdCLEF Mels Computer D7 Part?/rich_train_metadata.csv"
 
-    # Root_PATH = "../input"
-    # TRAIN_METADATA_PATH = "kkiller-birdclef-mels-computer-d7-part?/rich_train_metadata.csv"
-    # LABEL_IDS_PATH = "kkiller-birdclef-mels-computer-d7-part?/LABEL_IDS.json"
+    Root_PATH = "../input"
+    TRAIN_METADATA_PATH = "kkiller-birdclef-mels-computer-d7-part?/rich_train_metadata.csv"
+    LABEL_IDS_PATH = "kkiller-birdclef-mels-computer-d7-part?/LABEL_IDS.json"
     # ---- Config ------------

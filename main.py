@@ -46,9 +46,9 @@ LABEL_IDS, df = get_df(mel_paths=MEL_PATHS, train_label_paths=TRAIN_LABEL_PATHS)
 ic(df.shape)
 ic(df.head())
 
-ogg_paths = Path("../datasets/Kkiller").glob("**/*.npy")
-ogg_name = [str(x).split('\\')[-1].split('.')[0]+'.ogg' for x in ogg_paths]
-df = df[df.filename.isin(ogg_name)]
+# ogg_paths = Path("../datasets/Kkiller").glob("**/*.npy")
+# ogg_name = [str(x).split('\\')[-1].split('.')[0]+'.ogg' for x in ogg_paths]
+# df = df[df.filename.isin(ogg_name)]
 
 ic(df["primary_label"].value_counts())
 ic([df["label_id"].min(), df["label_id"].max()])
