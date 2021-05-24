@@ -9,7 +9,5 @@ class config():
     VAL_BATCH_SIZE = 128
     VAL_NUM_WORKERS = 0
     MODEL_ROOT = Path(".")
-
-    # DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    DEVICE = 'cpu'
+    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # ---- Config ------------
