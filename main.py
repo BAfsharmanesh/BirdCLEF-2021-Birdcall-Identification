@@ -40,18 +40,18 @@ TRAIN_LABEL_PATHS = sorted(Path(Root_PATH).glob(LABEL_IDS_PATH))
 
 LABEL_IDS, df = get_df(mel_paths=MEL_PATHS, train_label_paths=TRAIN_LABEL_PATHS)
 
-ogg_paths = Path("../datasets/Kkiller").glob("**/*.npy")
-ogg_name = [str(x).split('\\')[-1].split('.')[0]+'.ogg' for x in ogg_paths]
-df = df[df.filename.isin(ogg_name)]
+# ogg_paths = Path("../datasets/Kkiller").glob("**/*.npy")
+# ogg_name = [str(x).split('\\')[-1].split('.')[0]+'.ogg' for x in ogg_paths]
+# df = df[df.filename.isin(ogg_name)]
 
-# ic(df["primary_label"].value_counts())
-# ic([df["label_id"].min(), df["label_id"].max()])
-# ic(len(df))
+ic(df["primary_label"].value_counts())
+ic([df["label_id"].min(), df["label_id"].max()])
+ic(len(df))
 #
-# for i in range(len(df)):
-#     ic(np.load(str(df.impath.iloc[i])).shape)
-#     ic(df.duration.iloc[i]/5)
-#     # plt.show()
+for i in range(len(df)):
+    ic(np.load(str(df.impath.iloc[i])).shape)
+    ic(df.duration.iloc[i]/5)
+    # plt.show()
 
 # ds = BirdClefDataset(meta=df, sr=SR, num_classes=NUM_CLASSES, duration=DURATION, is_train=True)
 # ic(len(ds))
