@@ -50,20 +50,16 @@ LABEL_IDS, df = get_df(mel_paths=MEL_PATHS, train_label_paths=TRAIN_LABEL_PATHS)
 ic(df["primary_label"].value_counts())
 ic([df["label_id"].min(), df["label_id"].max()])
 ic(len(df))
-#
-for i in range(len(df)):
-    ic(np.load(str(df.impath.iloc[i])).shape)
-    ic(df.duration.iloc[i]/5)
-    # plt.show()
 
-# ds = BirdClefDataset(meta=df, sr=SR, num_classes=NUM_CLASSES, duration=DURATION, is_train=True)
-# ic(len(ds))
-#
-# x, y = ds[np.random.choice(len(ds))]
-# ic([x.shape, y.shape, np.where(y >= 0.5)])
-# lbd.specshow(x[0])
-# plt.title(f"bird name: {[key for key,value in LABEL_IDS.items() if value==np.where(y >= 0.5)[0]]}")
-# plt.show()
+
+ds = BirdClefDataset(meta=df, sr=SR, num_classes=NUM_CLASSES, duration=DURATION, is_train=True)
+ic(len(ds))
+
+x, y = ds[np.random.choice(len(ds))]
+ic([x.shape, y.shape, np.where(y >= 0.5)])
+lbd.specshow(x[0])
+plt.title(f"bird name: {[key for key,value in LABEL_IDS.items() if value==np.where(y >= 0.5)[0]]}")
+plt.show()
 
 
 MODEL_NAMES = ["resnest50"]
