@@ -8,7 +8,7 @@ class config():
     NUM_CLASSES = 397
     SR = 32_000
     DURATION = 7
-    MAX_READ_SAMPLES: int = 5
+    MAX_READ_SAMPLES: int = 4
     TRAIN_BATCH_SIZE = 100
     TRAIN_NUM_WORKERS = 0
     VAL_BATCH_SIZE = 128
