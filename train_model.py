@@ -37,6 +37,9 @@ VAL_NUM_WORKERS = config.VAL_NUM_WORKERS
 MODEL_ROOT = config.MODEL_ROOT
 DEVICE = config.DEVICE
 NEPTUNE = config.neptune
+LOAD_CHECHPOINT = config.LOAD_CHECKPOINT
+PATH_CHECKPOINT = config.PATH_CHECKPOINT
+
 # ------------ Config ------------
 seed_everything()
 
@@ -282,6 +285,10 @@ def one_fold(model_name,df ,audio_image_store , fold, train_set, val_set, model_
   saver = AutoSave(model_root=MODEL_ROOT, root=save_root, name=f"birdclef_{model_name}_fold{fold}", metric="f1_val")
 
   net = get_model(model_name, num_classes=NUM_CLASSES).to(device)
+
+  if LOAD_CHECHPOINT:
+    checkpoint = torch.load(PATH_CHECKPOINT)
+    net.load_state_dict(checkpoint['model_state_dict'])
 
   criterion = nn.BCEWithLogitsLoss()
 

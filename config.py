@@ -27,4 +27,6 @@ class config():
     LABEL_IDS_PATH = "kkiller-birdclef-mels-computer-d7-part?/LABEL_IDS.json"
 
     neptune = True
+    LOAD_CHECKPOINT = True
+    PATH_CHECKPOINT = '../input/kkiller-birdclef-models-public/birdclef_resnest50_fold0_epoch_10_f1_val_06471_20210417161101.pth'
     # ---- Config ------------
