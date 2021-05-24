@@ -18,6 +18,7 @@ from tqdm.auto import tqdm
 
 from data_prep import BirdClefDataset
 from config import config
+from Seed_everything import seed_everything
 # -------------- import libraries --------------
 
 
@@ -34,7 +35,7 @@ VAL_NUM_WORKERS = config.VAL_NUM_WORKERS
 MODEL_ROOT = config.MODEL_ROOT
 DEVICE = config.DEVICE
 # ------------ Config ------------
-
+seed_everything()
 
 
 # ---------------- get_model ----------------
@@ -256,7 +257,7 @@ class AutoSave:
 
 
 # ---------------- one_fold ----------------
-def one_fold(model_name,df , fold, train_set, val_set, model_root, epochs=20, save=True, save_root=None, device='cpu'):
+def one_fold(model_name,df ,audio_image_store , fold, train_set, val_set, model_root, epochs=20, save=True, save_root=None, device='cpu'):
 
   save_root = Path(save_root) or model_root
 
@@ -268,11 +269,11 @@ def one_fold(model_name,df , fold, train_set, val_set, model_root, epochs=20, sa
 
   optimizer = optim.Adam(net.parameters(), lr=8e-4)
   scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, eta_min=1e-5, T_max=epochs)
+  train_data = BirdClefDataset(audio_image_store, meta=df.loc[train_set].reset_index(drop=True),
+                           sr=SR, duration=DURATION, is_train=True)
 
-  train_data = BirdClefDataset(meta=df.loc[train_set].reset_index(drop=True),
-                           sr=SR, num_classes=NUM_CLASSES, duration=DURATION, is_train=True)
   train_laoder = DataLoader(train_data, batch_size=TRAIN_BATCH_SIZE, num_workers=TRAIN_NUM_WORKERS, shuffle=True)
-  val_data = BirdClefDataset(meta=df.loc[val_set].reset_index(drop=True),  sr=SR, num_classes=NUM_CLASSES, duration=DURATION, is_train=False)
+  val_data = BirdClefDataset(audio_image_store, meta=df.loc[val_set].reset_index(drop=True),  sr=SR, duration=DURATION, is_train=False)
   val_laoder = DataLoader(val_data, batch_size=VAL_BATCH_SIZE, num_workers=VAL_NUM_WORKERS, shuffle=False)
 
   epochs_bar = tqdm(list(range(epochs)), leave=False)
@@ -322,7 +323,7 @@ def one_fold(model_name,df , fold, train_set, val_set, model_root, epochs=20, sa
 
 
 # ---------------- train ----------------
-def train(model_name,df, device='cpu', epochs=20, save=True, n_splits=5, seed=177, save_root=None, suffix="", folds=None):
+def train(model_name,df,audio_image_store ,device='cpu', epochs=20, save=True, n_splits=5, seed=177, save_root=None, suffix="", folds=None):
     gc.collect()
     torch.cuda.empty_cache()
 
@@ -339,7 +340,7 @@ def train(model_name,df, device='cpu', epochs=20, save=True, n_splits=5, seed=17
         fold_bar.set_description(f"[FOLD {fold}]")
         train_set = np.setdiff1d(df.index, val_set)
 
-        one_fold(model_name, df, fold=fold, train_set=train_set, val_set=val_set, epochs=epochs, save=save,
+        one_fold(model_name, df, audio_image_store, fold=fold, train_set=train_set, val_set=val_set, epochs=epochs, save=save,
                  save_root=save_root, device=device, model_root=MODEL_ROOT)
 
         gc.collect()
