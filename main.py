@@ -40,6 +40,10 @@ pd.set_option('display.max_columns', 100)
 MEL_PATHS = sorted(Path(Root_PATH).glob(TRAIN_METADATA_PATH))
 TRAIN_LABEL_PATHS = sorted(Path(Root_PATH).glob(LABEL_IDS_PATH))
 
+ic(str(MEL_PATHS))
+ic(str(TRAIN_LABEL_PATHS))
+
+
 LABEL_IDS, df = get_df(mel_paths=MEL_PATHS, train_label_paths=TRAIN_LABEL_PATHS)
 
 # ogg_paths = Path("../datasets/Kkiller").glob("**/*.npy")
