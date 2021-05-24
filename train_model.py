@@ -18,26 +18,23 @@ from tqdm import tqdm
 from icecream import ic
 
 from data_prep import BirdClefDataset
+from config import config
 # -------------- import libraries --------------
 
 
+
 # ------------ Config ------------
-NUM_CLASSES = 397
-SR = 32_000
-DURATION = 7
-MAX_READ_SAMPLES: int = 5
-TRAIN_BATCH_SIZE = 100
-TRAIN_NUM_WORKERS = 0
-VAL_BATCH_SIZE = 128
-VAL_NUM_WORKERS = 0
-MODEL_ROOT = Path(".")
-
-# DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-DEVICE = 'cpu'
+NUM_CLASSES = config.NUM_CLASSES
+SR = config.SR
+DURATION = config.DURATION
+MAX_READ_SAMPLES: int = config.MAX_READ_SAMPLES
+TRAIN_BATCH_SIZE = config.TRAIN_BATCH_SIZE
+TRAIN_NUM_WORKERS = config.TRAIN_NUM_WORKERS
+VAL_BATCH_SIZE = config.VAL_BATCH_SIZE
+VAL_NUM_WORKERS = config.VAL_NUM_WORKERS
+MODEL_ROOT = config.MODEL_ROOT
+DEVICE = config.DEVICE
 # ------------ Config ------------
-
-
-
 
 
 
