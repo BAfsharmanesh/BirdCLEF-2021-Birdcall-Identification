@@ -29,6 +29,8 @@ Root_PATH =  config.Root_PATH
 LABEL_IDS_PATH = config.LABEL_IDS_PATH
 TRAIN_METADATA_PATH = config.TRAIN_METADATA_PATH
 
+EPOCH_NUM = config.EPOCH_NUM
+
 ic(DEVICE)
 # ------------ Config ------------
 seed_everything()
@@ -81,7 +83,7 @@ for model_name in MODEL_NAMES:
         df,
         audio_image_store,
         device=DEVICE,
-        epochs=2,
+        epochs=EPOCH_NUM,
         suffix=f"_sr{SR}_d{DURATION}_v1_v1",
         folds=[0]
     )

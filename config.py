@@ -13,6 +13,7 @@ class config():
     TRAIN_NUM_WORKERS = 2
     VAL_BATCH_SIZE = 128
     VAL_NUM_WORKERS = 2
+    EPOCH_NUM = 15
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     MODEL_ROOT = Path(".")
