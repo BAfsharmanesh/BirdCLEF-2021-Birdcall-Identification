@@ -75,15 +75,15 @@ plt.show()
 
 MODEL_NAMES = ["resnest50"]
 
-for model_name in MODEL_NAMES:
-    print("\n\n###########################################", model_name.upper())
-
-    train(
-        model_name,
-        df,
-        audio_image_store,
-        device=DEVICE,
-        epochs=EPOCH_NUM,
-        suffix=f"_sr{SR}_d{DURATION}_v1_v1",
-        folds=[0]
-    )
+# for model_name in MODEL_NAMES:
+#     print("\n\n###########################################", model_name.upper())
+#
+#     train(
+#         model_name,
+#         df,
+#         audio_image_store,
+#         device=DEVICE,
+#         epochs=EPOCH_NUM,
+#         suffix=f"_sr{SR}_d{DURATION}_v1_v1",
+#         folds=[0]
+#     )
