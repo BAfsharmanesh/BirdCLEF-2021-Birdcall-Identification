@@ -200,9 +200,9 @@ def one_epoch(net, criterion, optimizer, scheduler, train_laoder, val_laoder, de
     if NEPTUNE:
         neptune.log_metric('Val loss', l_val)
         neptune.log_metric('Val lrap', lrap_val)
-        neptune.log_metric('Val prec', f1_val)
+        neptune.log_metric('Val prec', prec_val)
         neptune.log_metric('Val rec', rec_val)
-        neptune.log_metric('Val f1', prec_val)
+        neptune.log_metric('Val f1', f1_val)
 
     return (l, l_val), (lrap, lrap_val), (f1, f1_val), (rec, rec_val), (prec, prec_val)
 # ---------------- one_epoch ----------------
