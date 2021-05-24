@@ -10,9 +10,9 @@ class config():
     DURATION = 7
     MAX_READ_SAMPLES: int = 4
     TRAIN_BATCH_SIZE = 100
-    TRAIN_NUM_WORKERS = 0
+    TRAIN_NUM_WORKERS = 2
     VAL_BATCH_SIZE = 128
-    VAL_NUM_WORKERS = 0
+    VAL_NUM_WORKERS = 2
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     MODEL_ROOT = Path(".")
