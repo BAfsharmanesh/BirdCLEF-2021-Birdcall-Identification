@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
-
 from data_prep import get_df, BirdClefDataset
 import train_model
 from train_model import train
@@ -23,8 +22,12 @@ TRAIN_BATCH_SIZE = config.TRAIN_BATCH_SIZE
 TRAIN_NUM_WORKERS = config.TRAIN_NUM_WORKERS
 VAL_BATCH_SIZE = config.VAL_BATCH_SIZE
 VAL_NUM_WORKERS = config.VAL_NUM_WORKERS
-MODEL_ROOT = config.MODEL_ROOT
 DEVICE = config.DEVICE
+
+MODEL_ROOT = config.MODEL_ROOT
+Root_PATH =  config.Root_PATH
+LABEL_IDS_PATH = config.LABEL_IDS_PATH
+TRAIN_METADATA_PATH = config.TRAIN_METADATA_PATH
 # ------------ Config ------------
 
 
@@ -32,8 +35,8 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_columns', 100)
 
 
-MEL_PATHS = sorted(Path("../datasets/Kkiller").glob("Kkiller BirdCLEF Mels Computer D7 Part?/rich_train_metadata.csv"))
-TRAIN_LABEL_PATHS = sorted(Path("../datasets/Kkiller").glob("Kkiller BirdCLEF Mels Computer D7 Part?/LABEL_IDS.json"))
+MEL_PATHS = sorted(Path(Root_PATH).glob(TRAIN_METADATA_PATH))
+TRAIN_LABEL_PATHS = sorted(Path(Root_PATH).glob(LABEL_IDS_PATH))
 
 LABEL_IDS, df = get_df(mel_paths=MEL_PATHS, train_label_paths=TRAIN_LABEL_PATHS)
 
